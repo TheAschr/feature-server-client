@@ -1,0 +1,173 @@
+import { z } from "zod";
+
+export const tableInfoSchema = z.object({
+  currentVersion: z.number(),
+  id: z.number(),
+  name: z.string(),
+  type: z.string(),
+  description: z.string(),
+  copyrightText: z.string(),
+  editFieldsInfo: z.null(),
+  ownershipBasedAccessControlForFeatures: z.null(),
+  syncCanReturnChanges: z.boolean(),
+  relationships: z.array(z.unknown()),
+  isDataVersioned: z.boolean(),
+  isDataArchived: z.boolean(),
+  isCoGoEnabled: z.boolean(),
+  supportsRollbackOnFailureParameter: z.boolean(),
+  archivingInfo: z.object({
+    supportsQueryWithHistoricMoment: z.boolean(),
+    startArchivingMoment: z.number(),
+  }),
+  supportsStatistics: z.boolean(),
+  supportsAdvancedQueries: z.boolean(),
+  supportsValidateSQL: z.boolean(),
+  supportsCoordinatesQuantization: z.boolean(),
+  supportsCalculate: z.boolean(),
+  advancedQueryCapabilities: z.object({
+    supportsPagination: z.boolean(),
+    supportsTrueCurve: z.boolean(),
+    supportsQueryWithDistance: z.boolean(),
+    supportsReturningQueryExtent: z.boolean(),
+    supportsStatistics: z.boolean(),
+    supportsHavingClause: z.boolean(),
+    supportsOrderBy: z.boolean(),
+    supportsDistinct: z.boolean(),
+    supportsCountDistinct: z.boolean(),
+    supportsQueryWithResultType: z.boolean(),
+    supportsReturningGeometryCentroid: z.boolean(),
+    supportsSqlExpression: z.boolean(),
+  }),
+  hasAttachments: z.boolean(),
+  supportsApplyEditsWithGlobalIds: z.boolean(),
+  htmlPopupType: z.string(),
+  objectIdField: z.string(),
+  globalIdField: z.string(),
+  displayField: z.string(),
+  typeIdField: z.string(),
+  subtypeField: z.string(),
+  fields: z.array(
+    z.union([
+      z.object({
+        name: z.string(),
+        type: z.literal("esriFieldTypeOID"),
+        alias: z.string(),
+        domain: z.null(),
+        editable: z.literal(false),
+        nullable: z.literal(false),
+        defaultValue: z.null(),
+        modelName: z.string(),
+      }),
+      z.object({
+        name: z.string(),
+        type: z.literal("esriFieldTypeGlobalID"),
+        alias: z.string(),
+        domain: z.null(),
+        editable: z.literal(false),
+        nullable: z.literal(false),
+        length: z.number(),
+        defaultValue: z.null(),
+        modelName: z.string(),
+      }),
+      z.object({
+        name: z.string(),
+        type: z.literal("esriFieldTypeGUID"),
+        alias: z.string(),
+        domain: z.null(),
+        editable: z.boolean(),
+        nullable: z.boolean(),
+        length: z.number(),
+        defaultValue: z.null(),
+        modelName: z.string(),
+      }),
+      z.object({
+        name: z.string(),
+        type: z.literal("esriFieldTypeDate"),
+        alias: z.string(),
+        domain: z.null(),
+        editable: z.boolean(),
+        nullable: z.boolean(),
+        defaultValue: z.union([z.number(), z.null()]),
+        modelName: z.string(),
+      }),
+      z.object({
+        name: z.string(),
+        type: z.literal("esriFieldTypeInteger"),
+        alias: z.string(),
+        domain: z.union([
+          z.object({
+            type: z.literal("codedValue"),
+            name: z.string(),
+            description: z.string(),
+            codedValues: z.array(
+              z.object({ name: z.string(), code: z.number() })
+            ),
+            mergePolicy: z.string(),
+            splitPolicy: z.string(),
+          }),
+          z.null(),
+        ]),
+        editable: z.boolean(),
+        nullable: z.boolean(),
+        defaultValue: z.union([z.number(), z.null()]),
+        modelName: z.string(),
+      }),
+      z.object({
+        name: z.string(),
+        type: z.literal("esriFieldTypeString"),
+        alias: z.string(),
+        domain: z.union([
+          z.object({
+            type: z.literal("codedValue"),
+            name: z.string(),
+            description: z.string(),
+            codedValues: z.array(
+              z.object({ name: z.string(), code: z.string() })
+            ),
+            mergePolicy: z.string(),
+            splitPolicy: z.string(),
+          }),
+          z.null(),
+        ]),
+        editable: z.boolean(),
+        nullable: z.boolean(),
+        defaultValue: z.null(),
+        length: z.optional(z.number()),
+        modelName: z.string(),
+      }),
+    ])
+  ),
+  indexes: z.array(
+    z.object({
+      name: z.string(),
+      fields: z.string(),
+      isAscending: z.boolean(),
+      isUnique: z.boolean(),
+      description: z.string(),
+    })
+  ),
+  dateFieldsTimeReference: z.object({
+    timeZone: z.string(),
+    respectsDaylightSaving: z.boolean(),
+  }),
+  types: z.array(z.unknown()),
+  templates: z.array(
+    z.object({
+      name: z.string(),
+      description: z.string(),
+      prototype: z.object({
+        attributes: z.record(
+          z.union([z.boolean(), z.string(), z.number(), z.null()])
+        ),
+      }),
+      drawingTool: z.string(),
+    })
+  ),
+  maxRecordCount: z.number(),
+  supportedQueryFormats: z.string(),
+  capabilities: z.string(),
+  useStandardizedQueries: z.boolean(),
+  standardMaxRecordCount: z.number(),
+  tileMaxRecordCount: z.number(),
+  maxRecordCountFactor: z.number(),
+});
